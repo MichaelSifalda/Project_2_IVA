@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from scipy.spatial import distance
 import math
-import os
 
 def show_wrap(name, img, size, close=True, video=False):
     """
