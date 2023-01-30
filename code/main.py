@@ -212,6 +212,7 @@ def show_hits(res, n_1, n_2, switch, score):
     cv2.putText(res, "PLAYER_2 - " + str(score[1]), (1680, 900), font, scale, color, thickness)
     return res, switch, score
 
+
 def show_win(res, switch):
     """
     :param res: [np.ndarray] - Image for drawing of results
@@ -268,6 +269,8 @@ if __name__ == "__main__":
     while True:
         ret, frame = curr_vid.read()
         if not ret:
+            curr_vid.release()
+            cv2.destroyAllWindows()
             break
 
         result = frame.copy()
@@ -303,10 +306,10 @@ if __name__ == "__main__":
                                                                     track_window_2, near_1, near_2, entry_pos)
         result, switch, score = show_hits(result, near_1, near_2, switch, score)
         k = show_wrap('image', result, 1080, close=False, video=True)
-
         if k == 27:
             curr_vid.release()
             cv2.destroyAllWindows()
             break
     show_win(result, switch)
+
 
